@@ -2,20 +2,84 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>首页</title>
+        <title>一步两步</title>
+        <script src="js/jquery.min.js"></script>
         <style type="text/css">
-        	div{
-				width:500px;
-				height:800px;
-				border:1px solid #aaa;
-			}
+            div,ul,li,p,img {
+                margin: 0; 
+                padding: 0;
+            }
+            .container{
+                width: 1250px;
+                height: 1000px;
+                border: 1px solid yellowgreen;
+                margin: 0 auto;
+            }
+
+            .header{
+                width: 100%;
+                height: 300px;
+                text-align: center;
+                position: relative;
+                background: url(images/snail.png);
+            }
+            .header ul{
+                position: absolute;
+                bottom: 0px;
+                right: 0px;
+            }
+            .header ul li{
+                text-decoration: none;
+                display: inline-block;
+                cursor: pointer;
+                height: 35px;
+                color: #fff;
+                margin-left: 10px;
+                line-height: 35px;
+                padding: 0px 30px;
+                border-radius: 20px;
+                background-color: rgba(100,100,100,0.8);
+            }
+            .header ul li:hover{
+                background-color: rgba(250,250,250,0.8);
+                color: #000;
+            }
+
+            .content{
+                width: 100%;
+                height: 500px;
+                background-color: gray;
+            }
+
+            .footer{
+                width: 100%;
+                height: 200px;
+                background-color: green; 
+            }
         </style>
     </head>
     <body>
-		<div>
-    		<h2>
-    			尝试使用git基本命令。
-    		</h2>
+		<div class="container">
+    		<div class="header">
+                <ul>
+                    <li>Home</li>
+                    <li>Notes</li>
+                    <li>Interests</li>
+                    <li>Grow</li>
+                    <li>About me</li>
+                </ul>    
+            </div>
+            <div class="content">
+                这里是content部分
+            </div>
+            <div class="footer">
+                这里是footer部分
+            </div>
 		</div>
+        <script type="text/javascript">
+        $(function(){
+
+        });
+        </script>
     </body>
 </html>
