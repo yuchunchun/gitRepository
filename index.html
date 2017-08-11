@@ -2,49 +2,20 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>轮播图</title>
+        <title>首页</title>
         <style type="text/css">
-        	body, ul, li, img{margin: 0; padding: 0;}
-			#box {width: 520px;height: 280px;overflow:hidden;background-color: yellowgreen;position: relative;margin: 0 auto;position: relative;}
-
-			ul{width: 2600px;height: 280px;position: absolute;left: 0px;}
-			
-			ul li {list-style: none;float:left;}
+        	div{
+				width:500px;
+				height:800px;
+				border:1px solid #aaa;
+			}
         </style>
     </head>
     <body>
-    	<div id="box">
-    		<ul>
-    			<li><img src="images/1.jpg"></li>
-    			<li><img src="images/2.jpg"></li>
-    			<li><img src="images/3.jpg"></li>
-    			<li><img src="images/4.jpg"></li>
-    			<li><img src="images/5.jpg"></li>
-    		</ul> 
-    		<script type="text/javascript">
-    			var count = 0;
-
-    			function $(id){
-    				return document.getElementById(id);
-    			}
-    			var box = $("box");
-    			var ulElement = box.firstElementChild || box.firstChild;
-    			
-    			function move(){
-    				count--;
-    				ulElement.style.left = count + "px";
-    			}
-
-    			var it = setInterval("move()", 30);
-
-    			ulElement.onmouseover = function(){
-    				clearInterval(it);
-    			}
-
-    			ulElement.onmouseout = function(){
-    				it = setInterval("move()", 30);
-    			}
-    		</script>
-    	</div>
+		<div>
+    		<h2>
+    			尝试使用git基本命令。
+    		</h2>
+		</div>
     </body>
 </html>
