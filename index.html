@@ -21,14 +21,14 @@
                 height: 300px;
                 text-align: center;
                 position: relative;
-                background-image: url(images/home.png);
+                background-image: url(images/bg-img.png);
             }
-            .header ul{
+            .header .menu{
                 position: absolute;
                 bottom: 0px;
                 right: 0px;
             }
-            li{
+            .menu li{
                 text-decoration: none;
                 display: inline-block;
                 cursor: pointer;
@@ -41,7 +41,7 @@
                 background-color: rgba(100,100,100,0.8);
             }
 
-            .active{
+            .menu .active{
                 background-color: rgba(250,250,250,0.8);
                 color: #000;
             }
@@ -51,24 +51,49 @@
                 height: 500px;
                 background-color: gray;
             }
-
+            
             .footer{
                 width: 100%;
                 height: 200px;
                 background-color: green; 
+            }
+            
+            .round {
+                position: absolute;
+                top: 100px;
+                right: 50px;
+            }
+            
+            .round li {
+                text-decoration: none;
+                display: block;
+                height: 14px;
+                width: 14px;
+                margin-top: 15px;
+                background-color: rgba(100,100,100,0.8);
+                border-radius: 7px;
+            } 
+
+            .round .checked{
+                background-color: #fff;
             }
         </style>
     </head>
     <body>
 		<div class="container">
     		<div class="header">
-                <ul>
+                <ul class="menu">
                     <li class="active">Home</li>
                     <li>Notes</li>
                     <li>Interests</li>
                     <li>Grow</li>
                     <li>About me</li>
-                </ul>    
+                </ul> 
+                <ul class="round">
+                    <li class="checked" value="0"></li>
+                    <li value="1"></li>
+                    <li value="2"></li>
+                </ul>
             </div>
             <div class="content">
                 这里是content部分
@@ -78,36 +103,54 @@
             </div>
 		</div>
         <script type="text/javascript">
+        var flag = true;
+        var endPosition = 0;
+        var currentItem = 0;
+        var timer = null;
         $(function(){
-            $(".header li").mouseenter(function(){
+            $(".menu li").mouseenter(function(){
                 this.classList.add("active");
                 $(this).siblings('li').each(function(index, el) {
                     this.classList.remove("active");
                 });
             });
-            
-        });
-        var flag = true;
-        var endPosition = 0;
-        var timer = setInterval(function(){
-            if(flag){
-                endPosition -= 1250;
-                if(endPosition == -5000){
-                    flag = false;
-                }
-            }else{
-                if(endPosition == 1250){
-                    flag = true;
-                }
-                endPosition += 1250;
-            }
-            /*var current = parseInt(this.style.left);
-            for (var i = 0; i < 10; i++) {
-                endPosition - current
-            };*/
-            $(".header")[0].style.backgroundPosition = endPosition + "px";
+            $(".round li").mouseenter(function(){
+                clearInterval(timer);
+                this.classList.add("checked");
+                $(this).siblings('li').each(function(index, el) {
+                    this.classList.remove("checked");
+                });
+                var leftPositon = -(this.value)*1250;
+                $(".header")[0].style.backgroundPosition = leftPositon + "px";
+                setTimer();
+            });
 
-        }, 1500);
+        });
+        function setTimer(){
+            timer = setInterval(function(){
+                if(flag){
+                    endPosition -= 1250;
+                    currentItem ++;
+                    if(endPosition == -2500){
+                        flag = false;
+                    }
+                }else{
+                    endPosition += 1250;
+                    currentItem --;
+                    if(endPosition == 0){
+                        flag = true;
+                    }
+                }
+                $(".header")[0].style.backgroundPosition = endPosition + "px";
+                var that = $(".round").find("li")[currentItem];
+                that.classList.add('checked');
+                $(that).siblings('li').each(function(index, el) {
+                    this.classList.remove("checked");
+                });
+            }, 1500);
+        }
+
+        setTimer();
         </script>
     </body>
 </html>
